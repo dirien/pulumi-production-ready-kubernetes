@@ -1,0 +1,12 @@
+name: devopsdaysams
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
+config:
+  scaleway:region: "nl-ams"
+  scaleway:zone: "nl-ams-1"
+  cluster:version: "1.27"
+  cluster:auto_upgrade: true
+  node:node_type: "PLAY2-NANO"
+  node:auto_scale: false
+  node:node_count: 3
+  node:auto_heal: true

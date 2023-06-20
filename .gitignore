@@ -1,0 +1,7 @@
+.idea
+**/node_modules
+**/Pulumi.*.yaml
+/bin/
+**/rendered
+**/kubeconfig
+gitops/**

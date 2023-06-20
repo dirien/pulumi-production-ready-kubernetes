@@ -1,0 +1,6 @@
+name: devopsdaysams-app
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
+config:
+  scaleway:region: "nl-ams"
+  scaleway:zone: "nl-ams-1"
