@@ -1,0 +1,12 @@
+{
+  "name": "01-app",
+  "version": "1.0.0",
+  "description": "Demo App, with Redis connection",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.20.2",
+    "express": "4.18.2"
+  }
+}
