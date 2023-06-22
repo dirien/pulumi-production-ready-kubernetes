@@ -18,17 +18,21 @@ uses Pulumi. From creating the infrastructure to setting up the GitOps Pipeline 
 You will need to install these tools in order to complete this workshop:
 
 - [Pulumi](https://www.pulumi.com/docs/get-started/install/)
+- [Pulumi Account](https://app.pulumi.com/signup) - this optional, but convenient to handle the state of the different
+  stacks.
+- [node.js](https://nodejs.org/en/download/)
+- [Go](https://golang.org/doc/install)
+- [Scaleway CLI](https://www.scaleway.com/en/cli/)
 - [Docker](https://docs.docker.com/get-docker/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
-- [A Github Account](https://github.com/signup)
+- [A GitHub Account](https://github.com/signup)
 - [Helm](https://helm.sh/docs/intro/install/)
 - [FluxCD](https://fluxcd.io/docs/installation/)
 
 ### Cloud provider
 
-Depending on the workshop you will get a different cloud provider to work with.
-
-- DevOpsDays Amsterdam 2023: [Scaleway](https://www.scaleway.com/en/)
+This workshop uses [Scaleway](https://www.scaleway.com/en/) as cloud provider. If you don't have an account yet, you can
+create one [here](https://console.scaleway.com/register).
 
 ### Troubleshooting Tips
 

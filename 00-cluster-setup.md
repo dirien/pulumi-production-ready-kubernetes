@@ -47,6 +47,7 @@ To successful complete this chapter, you must meet all of these requirements:
 - [Scaleway CLI](https://www.scaleway.com/en/cli/)
 - [The Pulumi CLI](https://www.pulumi.com/docs/get-started/install/) should be present on your machine
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [Node.js](https://nodejs.org/en/download/) installed
 
 ## Instructions
 
@@ -86,6 +87,8 @@ Change into the `00-cluster-setup` directory.
 
 ```bash
 cd 00-cluster-setup
+# run npm install to install all dependencies
+npm install
 ```
 
 Most important part of a Pulumi program is the `Pulumi.yaml`. Here you can define and modify various settings. From
@@ -111,9 +114,24 @@ config:
 
 ### Step 4 - Run Pulumi Up
 
+> **Note:** If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
+> login. You may need to create an account first, don't worry it is free.
+> Alternatively you can use also the `pulumi login --local` command to login locally.
+
 ```bash
 pulumi up
 ```
+
+Pulumi will ask you now to create a new stack. You can name the stack whatever you want. If you run Pulumi with the
+local login, please make sure to use for every stack a different name.
+
+```bash
+Please choose a stack, or create a new one:  [Use arrows to move, type to filter]
+> <create a new stack>
+Please choose a stack, or create a new one: <create a new stack>
+Please enter your desired stack name: cluster   
+```
+
 
 If the preview looks good, select `yes` to deploy the cluster
 

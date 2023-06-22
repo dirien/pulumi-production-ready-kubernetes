@@ -6,16 +6,17 @@ import (
 	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 
-		infraStackRef, err := pulumi.NewStackReference(ctx, "dirien/devopsdaysams/dev", nil)
+		infraStackRef, err := pulumi.NewStackReference(ctx, config.Get(ctx, "infraStackRef"), nil)
 		if err != nil {
 			return err
 		}
-		appImageRef, err := pulumi.NewStackReference(ctx, "dirien/devopsdaysams-app/dev", nil)
+		appImageRef, err := pulumi.NewStackReference(ctx, config.Get(ctx, "appImageRef"), nil)
 		if err != nil {
 			return err
 		}

@@ -1,3 +1,6 @@
 name: devopsdaysams-deploy
 runtime: go
 description: A minimal Kubernetes Go Pulumi program
+config:
+  infraStackRef: "dirien/devopsdaysams/dev"
+  appImageRef: "dirien/devopsdaysams-app/dev"

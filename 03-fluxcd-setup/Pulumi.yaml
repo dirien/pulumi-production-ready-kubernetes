@@ -3,3 +3,4 @@ runtime: go
 description: A minimal Kubernetes Go Pulumi program
 config:
   gitrepo: https://github.com/dirien/helloserver
+  infraStackRef: "dirien/devopsdaysams/dev"
