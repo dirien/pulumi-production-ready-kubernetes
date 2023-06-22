@@ -22,6 +22,8 @@ Change into the `01-app` directory using:
 
 ```bash
 cd 01-app
+# run npm install to install all dependencies
+npm install
 ```
 
 ### Step 2 - Set the Scaleway secret key
@@ -41,10 +43,24 @@ to build a Linux image.
 
 ### Step 4 - Build and push the image
 
+> **Note:** If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
+> login. You may need to create an account first, don't worry it is free.
+> Alternatively you can use also the `pulumi login --local` command to login locally.
+
 Now we can run `pulumi up` to build the image and push it to the registry. This will take a few minutes.
 
 ```bash
 pulumi up
+```
+
+Pulumi will ask you now to create a new stack. You can name the stack whatever you want. If you run Pulumi with the
+local login, please make sure to use for every stack a different name.
+
+```bash
+Please choose a stack, or create a new one:  [Use arrows to move, type to filter]
+> <create a new stack>
+Please choose a stack, or create a new one: <create a new stack>
+Please enter your desired stack name: container   
 ```
 
 ### Step 5 (Optional) - Test the application

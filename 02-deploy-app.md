@@ -16,6 +16,7 @@ In this chapter, you will learn some intermediate Pulumi concepts:
 - The Kubernetes cluster from the [previous chapter](/00-cluster-setup.md)
 - The nodejs application from the [previous chapter](/01-app-setup.md)
 - Pulumi CLI installed
+- [Go](https://golang.org/doc/install)
 
 ## Instructions
 
@@ -28,6 +29,8 @@ Use the `cd` command to change into the `02-deploy-app` directory.
 
 ```bash
 cd 02-deploy-app
+# Install go dependencies
+go mod download
 ```
 
 ### Step 2 - Get the Kubernetes cluster outputs and container image
@@ -35,26 +38,27 @@ cd 02-deploy-app
 To retrieve the outputs of the different stacks, we use `StackReference`s. Please change the actual stack names to the
 ones you used in the previous chapters.
 
-```go
-package main
-..
-func main() {
-	pulumi.Run(func(ctx *pulumi.Context) error {
-		infraStackRef, err := pulumi.NewStackReference(ctx, "dirien/devopsdaysams/dev", nil)
-		if err != nil {
-			return err
-		}
-		appImageRef, err := pulumi.NewStackReference(ctx, "dirien/devopsdaysams-app/dev", nil)
-		if err != nil {
-			return err
-		}
-		...
-	}
-}
-
+```bash
+pulumi config set infraStackRef
+pulumi config set appImageRef
 ```
 
+Pulumi will ask you now to create a new stack. You can name the stack whatever you want. If you run Pulumi with the
+local login, please make sure to use for every stack a different name.
+
+```bash
+Please choose a stack, or create a new one:  [Use arrows to move, type to filter]
+> <create a new stack>
+Please choose a stack, or create a new one: <create a new stack>
+Please enter your desired stack name: deploy   
+```
+
+
 ### Step 3 - Deploy the application
+
+> **Note:** If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
+> login. You may need to create an account first, don't worry it is free.
+> Alternatively you can use also the `pulumi login --local` command to login locally.
 
 Now we can deploy the application to the cluster. Run `pulumi up` to deploy the application.
 

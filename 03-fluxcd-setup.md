@@ -17,6 +17,7 @@ As programming language, I am going to use Go again, but feel free to use the la
 
 - The Kubernetes cluster from the [previous chapter](/00-cluster-setup.md)
 - Pulumi CLI installed
+- [Go](https://golang.org/doc/install)
 - Fork the https://github.com/dirien/helloserver repository, if you want to change the application
 - Optional: Install the [FluxCD CLI](https://fluxcd.io/flux/installation/#install-the-flux-cli)
 
@@ -26,9 +27,34 @@ As programming language, I am going to use Go again, but feel free to use the la
 
 ```bash
 cd 04-fluxcd-setup
+# Install go dependencies
+go mod download
 ```
 
-### Step 2 - Deploy the stack
+## Step 2 - Get the Kubernetes cluster outputs
+
+To retrieve the output from our cluster deployment, we use `StackReference`. Please change the actual stack names to the
+ones you used in the previous chapters.
+
+```bash
+pulumi config set infraStackRef
+```
+
+Pulumi will ask you now to create a new stack. You can name the stack whatever you want. If you run Pulumi with the
+local login, please make sure to use for every stack a different name.
+
+```bash
+Please choose a stack, or create a new one:  [Use arrows to move, type to filter]
+> <create a new stack>
+Please choose a stack, or create a new one: <create a new stack>
+Please enter your desired stack name: deploy   
+```
+
+### Step 3 - Deploy the stack
+
+> **Note:** If you run Pulumi for the first time, you will be asked to log in. Follow the instructions on the screen to
+> login. You may need to create an account first, don't worry it is free.
+> Alternatively you can use also the `pulumi login --local` command to login locally.
 
 Change in the `Pulumi.yaml` the `gitrepo` section to match your forked repository.
 
@@ -38,7 +64,7 @@ Run `pulumi up` to deploy the stack.
 pulumi up
 ```
 
-### Step 3 - Change the default value of the Helm chart
+### Step 4 - Change the default value of the Helm chart
 
 If you forked the `https://github.com/dirien/helloserver`, you can change the default `tag` value in `
 /helloserver/delivery/charts/hello-server/values.yaml` to `v0.1.1` and commit the change.

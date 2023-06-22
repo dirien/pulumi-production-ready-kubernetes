@@ -11,7 +11,8 @@ import (
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		infraStackRef, err := pulumi.NewStackReference(ctx, "dirien/devopsdaysams/dev", nil)
+
+		infraStackRef, err := pulumi.NewStackReference(ctx, config.Get(ctx, "infraStackRef"), nil)
 		if err != nil {
 			return err
 		}
