@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@lbrlabs/pulumi-scaleway";
+import * as scaleway from "@ediri/scaleway";
 import * as docker from "@pulumi/docker";
 
 const containerRegistry = new scaleway.RegistryNamespace("devopsdaysams-registry", {

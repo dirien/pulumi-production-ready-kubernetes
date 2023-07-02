@@ -1,9 +1,9 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as scaleway from "@lbrlabs/pulumi-scaleway";
+import * as scaleway from "@ediri/scaleway";
 
 const clusterConfig = new pulumi.Config("cluster")
 
-const kapsule = new scaleway.KubernetesCluster("devopsdaysams-cluster", {
+const kapsule = new scaleway.K8sCluster("devopsdaysams-cluster", {
     version: clusterConfig.require("version"),
     cni: "cilium",
     deleteAdditionalResources: true,
@@ -20,7 +20,7 @@ const kapsule = new scaleway.KubernetesCluster("devopsdaysams-cluster", {
 
 const nodeConfig = new pulumi.Config("node")
 
-new scaleway.KubernetesNodePool("devopsdaysams-node-pool", {
+new scaleway.K8sPool("devopsdaysams-node-pool", {
     nodeType: nodeConfig.require("node_type"),
     size: nodeConfig.requireNumber("node_count"),
     autoscaling: nodeConfig.requireBoolean("auto_scale"),
