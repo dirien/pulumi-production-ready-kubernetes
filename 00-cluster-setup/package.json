@@ -6,6 +6,6 @@
   },
   "dependencies": {
     "@pulumi/pulumi": "3.74.0",
-    "@ediri/scaleway": "2.22.0"
+    "@ediri/scaleway": "2.23.0"
   }
 }
