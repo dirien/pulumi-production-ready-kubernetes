@@ -2,8 +2,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "runArgs": ["--init", "--privileged"],
-  "overrideCommand": false,
   "customizations": {
     "vscode": {
       "extensions": [
