@@ -13,6 +13,7 @@ const image = new docker.Image("devopsdaysams-image", {
     build: {
         context: "app",
         platform: "linux/amd64",
+        builderVersion
     },
     imageName: containerRegistry.endpoint.apply(s => `${s}/myapp`),
     registry: {
