@@ -2,9 +2,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "runArgs": [
-    "--network=host"
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -13,7 +10,7 @@
     }
   },
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:2": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest",
     },
   },
