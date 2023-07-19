@@ -1,5 +1,7 @@
 # Pulumi: Production Ready Kubernetes Workshop
 
+[![Open in DevPod!](https://devpod.sh/assets/open-in-devpod.svg)](https://devpod.sh/open#https://github.com/dirien/pulumi-production-ready-kubernetes)
+
 ## Welcome, Kubernetes Friends!
 
 The goal of this workshop is for you to bootstrap a production ready Kubernetes Cluster. Every lab of the workshops
