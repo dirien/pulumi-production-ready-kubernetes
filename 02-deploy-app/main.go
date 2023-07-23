@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes"
-	appsv1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/apps/v1"
-	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
-	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
+	"fmt"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes"
+	appsv1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/apps/v1"
+	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/core/v1"
+	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
@@ -26,7 +27,7 @@ func main() {
 		})
 
 		appLabels := pulumi.StringMap{
-			"app": pulumi.String("devopsdaysams"),
+			"app": pulumi.String("scalewayworkshop"),
 		}
 		deployment, err := appsv1.NewDeployment(ctx, "app-dep", &appsv1.DeploymentArgs{
 			Metadata: &metav1.ObjectMetaArgs{
@@ -46,7 +47,7 @@ func main() {
 					Spec: &corev1.PodSpecArgs{
 						Containers: corev1.ContainerArray{
 							corev1.ContainerArgs{
-								Name:  pulumi.String("devopsdaysams"),
+								Name:  pulumi.String("scalewayworkshop"),
 								Image: appImageRef.GetStringOutput(pulumi.String("imageName")),
 								Ports: corev1.ContainerPortArray{
 									corev1.ContainerPortArgs{
@@ -82,8 +83,13 @@ func main() {
 			return err
 		}
 
-		ctx.Export("name", deployment.Metadata.Elem().Name())
-		ctx.Export("url", service.Status.LoadBalancer().ToLoadBalancerStatusPtrOutput())
+		ctx.Export("name", deployment.Metadata.Name())
+		ctx.Export("url", service.Status.LoadBalancer().Ingress().ApplyT(func(ingress []corev1.LoadBalancerIngress) string {
+			if len(ingress) > 0 {
+				return fmt.Sprintf("http://%s", *ingress[0].Ip)
+			}
+			return ""
+		}))
 
 		return nil
 	})

@@ -10,7 +10,17 @@ In this chapter we will destroy our Kubernetes Cluster we created during the wor
 
 ### Step 1 - Destroy your cluster with Pulumi
 
-Depending on your progress in the workshop, you have to destroy one or two stacks. Start with the GitOps stack:
+Depending on your progress in the workshop, you have to destroy more or less stacks. We will start with the last stack
+we created, which is the `04-idp` stack. Please change into the directory and destroy the stack:
+
+> **Note:** You may have to delete the entities in the Port UI first, before you can destroy the stack.
+
+```bash
+cd 04-idp
+pulumi destroy -y -f
+```
+
+Next we can destroy the `03-fluxcd-setup` stack:
 
 ```bash
 cd 03-fluxcd-setup

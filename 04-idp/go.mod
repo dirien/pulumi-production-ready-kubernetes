@@ -1,8 +1,10 @@
-module scalewayworkshop-gitops
+module 04-idp
 
 go 1.20
 
 require (
+	github.com/dirien/pulumi-scaleway/sdk/v2 v2.24.0
+	github.com/port-labs/pulumi-port/sdk v1.1.1
 	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.0.1
 	github.com/pulumi/pulumi/sdk/v3 v3.75.0
 )

@@ -1,0 +1,5 @@
+name: 04-idp
+runtime: go
+description: A minimal Go Pulumi program
+config:
+  infraStackRef: "dirien/scalewayworkshop-infra/dev"

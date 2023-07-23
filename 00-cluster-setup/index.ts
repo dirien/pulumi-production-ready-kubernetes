@@ -3,7 +3,7 @@ import * as scaleway from "@ediri/scaleway";
 
 const clusterConfig = new pulumi.Config("cluster")
 
-const kapsule = new scaleway.K8sCluster("devopsdaysams-cluster", {
+const kapsule = new scaleway.K8sCluster("scalewayworkshop-cluster", {
     version: clusterConfig.require("version"),
     cni: "cilium",
     deleteAdditionalResources: true,
@@ -20,7 +20,7 @@ const kapsule = new scaleway.K8sCluster("devopsdaysams-cluster", {
 
 const nodeConfig = new pulumi.Config("node")
 
-new scaleway.K8sPool("devopsdaysams-node-pool", {
+const pool = new scaleway.K8sPool("scalewayworkshop-node-pool", {
     nodeType: nodeConfig.require("node_type"),
     size: nodeConfig.requireNumber("node_count"),
     autoscaling: nodeConfig.requireBoolean("auto_scale"),
@@ -29,5 +29,10 @@ new scaleway.K8sPool("devopsdaysams-node-pool", {
 });
 
 export const kapsuleName = kapsule.name;
+export const kapsuleVersion = kapsule.version;
+export const kapsuleAutoUpgrade = kapsule.autoUpgrade.enable;
+export const kapusuleNodeCount = pool.size;
+export const kapsuleNodeType = pool.nodeType;
+export const kapsuleID = kapsule.id;
 export const region = kapsule.region;
 export const kubeconfig = pulumi.secret(kapsule.kubeconfigs[0].configFile);

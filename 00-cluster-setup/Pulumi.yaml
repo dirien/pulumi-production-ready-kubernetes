@@ -1,9 +1,9 @@
-name: devopsdaysams
+name: scalewayworkshop-infra
 runtime: nodejs
-description: A minimal TypeScript Pulumi program
+description: "Scaleway Workshop Infrastructure"
 config:
-  scaleway:region: "nl-ams"
-  scaleway:zone: "nl-ams-1"
+  scaleway:region: "fr-par"
+  scaleway:zone: "fr-par-1"
   cluster:version: "1.27"
   cluster:auto_upgrade: true
   node:node_type: "PLAY2-NANO"

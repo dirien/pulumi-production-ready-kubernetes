@@ -1,4 +1,4 @@
-name: devopsdaysams-app
+name: scalewayworkshop-app
 runtime: nodejs
 description: A minimal TypeScript Pulumi program
 config:
