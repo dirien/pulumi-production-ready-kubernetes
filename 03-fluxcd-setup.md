@@ -23,10 +23,10 @@ As programming language, I am going to use Go again, but feel free to use the la
 
 ## Instructions
 
-### Step 1 - Change into the `04-fluxcd-setup` directory
+### Step 1 - Change into the `03-fluxcd-setup` directory
 
 ```bash
-cd 04-fluxcd-setup
+cd 03-fluxcd-setup
 # Install go dependencies
 go mod download
 ```
@@ -73,7 +73,7 @@ Now the GitOps pipeline should deploy the new version of the application, you ca
 the FluxCD CLI to trigger a sync.
 
 ```bash
-fluc reconcile gitrepository hello-server-git-repo --kubeconfig kubeconfig -n default
+fluc reconcile gitrepository hello[main.go](04-idp%2Fmain.go)-server-git-repo --kubeconfig kubeconfig -n default
 flux reconcile helmrelease hello-server-helm-release --kubeconfig kubeconfig -n default
 ```
 

@@ -32,7 +32,13 @@ Before we can run the Pulumi code, we need to pass the Scaleway secret key to Pu
 CLI:
 
 ```bash
-pulumi config set secret_key <value> --secret
+pulumi config set secret_key --secret
+```
+You should see the following output:
+
+```bash
+Please choose a stack, or create a new one: dev
+value: 
 ```
 
 ### Step 3 - Inspect the Pulumi code
@@ -82,7 +88,7 @@ curl localhost:3000
 You should see the following output:
 
 ```bash
-Hello DevOpsDays Amsterdam!
+Hello Pulumi World!
 ```
 
 #### Step 5.2 - Curl the POST endpoint
@@ -102,9 +108,12 @@ the cluster up and running for [Chapter 2 - Deploy an Application](./02-deploy-a
 
 ## Stretch Goals
 
+- Can you change the `FROM` image a `cgr.dev/chainguard/node:latest` image, for enhanced security and smaller image size?
+    * Run `docker scout <imageName output from pulumi>/myapp:latest` before the change
+    * Hint: You need to change `ENTRYPOINT [ "node", "app.js" ]` to `ENTRYPOINT [ "/usr/bin/node", "/app/app.js" ]`
+    * Run `docker scout <imageName output from pulumi>/myapp:latest` after the change and compare the results
 - Can you add `json` support to the application?
 - Can you add a `health` endpoint to the application?
-- Can you change the `FROM` image a `chainguard` image, for enhanced security and smaller image size?
 
 ## Learn More
 

@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // GET route
 app.get('/', (req, res) => {
-    res.status(200).send('Hello DevOpsDays Amsterdam!');
+    res.status(200).send('Hello Pulumi World!');
 });
 
 // POST route

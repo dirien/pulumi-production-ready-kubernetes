@@ -1,9 +1,5 @@
 # Chapter 0 - Create a Kubernetes Cluster
 
-## Cloud Providers used in this workshop
-
-- [Scaleway](https://www.scaleway.com/en/)
-
 ## Overview
 
 In order to set up a GitOps workflow, we are going to need a Kubernetes Cluster. The goal of this chapter is to firstly
@@ -102,8 +98,8 @@ the runtime of the programming language you are using to changing the default co
 ```yaml
 ...
 config:
-  scaleway:region: "nl-ams"
-  scaleway:zone: "nl-ams-1"
+  scaleway:region: "fr-par"
+  scaleway:zone: "fr-par-1"
   cluster:version: "1.27"
   cluster:auto_upgrade: true
   node:node_type: "PLAY2-NANO"
@@ -125,31 +121,37 @@ pulumi up
 Pulumi will ask you now to create a new stack. You can name the stack whatever you want. If you run Pulumi with the
 local login, please make sure to use for every stack a different name.
 
+> Please name your stack `dev` for this workshop
+
 ```bash
 Please choose a stack, or create a new one:  [Use arrows to move, type to filter]
 > <create a new stack>
 Please choose a stack, or create a new one: <create a new stack>
-Please enter your desired stack name: cluster   
+Please enter your desired stack name: dev   
 ```
-
 
 If the preview looks good, select `yes` to deploy the cluster
 
 ```bash
 Previewing update (dev)
 
-View in Browser (Ctrl+O): https://app.pulumi.com/dirien/devopsdaysams/dev/previews/aaf2d43a-2ee9-4d8c-9b8c-c66d211dbd21
+View in Browser (Ctrl+O): https://app.pulumi.com/dirien/scalewayworkshop-infra/dev/previews/b12aa499-f05a-46c1-89a0-480e503ed2f3
 
-     Type                                  Name                     Plan       
- +   pulumi:pulumi:Stack                   devopsdaysams-dev        create     
- +   ├─ scaleway:index:KubernetesCluster   devopsdaysams-cluster    create     
- +   └─ scaleway:index:KubernetesNodePool  devopsdaysams-node-pool  create     
+     Type                          Name                        Plan       
+ +   pulumi:pulumi:Stack           scalewayworkshop-infra-dev  create     
+ +   ├─ scaleway:index:K8sCluster  scalewayworkshop-cluster    create     
+ +   └─ scaleway:index:K8sPool     scalewayworkshop-node-pool  create     
 
 
 Outputs:
-    kapsuleName: "devopsdaysams-cluster-70aa1ed"
-    kubeconfig : output<string>
-    region     : output<string>
+    kapsuleAutoUpgrade: true
+    kapsuleID         : output<string>
+    kapsuleName       : "scalewayworkshop-cluster-48279a7"
+    kapsuleNodeType   : "PLAY2-NANO"
+    kapsuleVersion    : "1.27"
+    kapusuleNodeCount : 3
+    kubeconfig        : output<string>
+    region            : output<string>
 
 Resources:
     + 3 to create
@@ -158,7 +160,6 @@ Do you want to perform this update?  [Use arrows to move, type to filter]
   yes
 > no
   details
-  [experimental] yes, using Update Plans (https://pulumi.com/updateplans)
 ```
 
 If the deployment is successful, you should see the following output. The duration of the deployment can take a few
@@ -178,7 +179,7 @@ With the `pulumi stack output` command, you can retrieve any output value from t
 retrieve the kubeconfig to use with `kubectl`.
 
 ```bash
-pulumi stack output kubeconfig --show-secrets > kubeconfig 
+pulumi stack output kubeconfig --show-secrets -s dev > kubeconfig
 ```
 
 ### Step 6 - Verify the cluster
@@ -193,10 +194,10 @@ kubectl --kubeconfig kubeconfig get nodes
 You should see a similar output:
 
 ```bash
-NAME                                             STATUS   ROLES    AGE    VERSION
-scw-devopsdaysams-cl-devopsdaysams-node-0dad28   Ready    <none>   111s   v1.27.2
-scw-devopsdaysams-cl-devopsdaysams-node-11277b   Ready    <none>   114s   v1.27.2
-scw-devopsdaysams-cl-devopsdaysams-node-516e39   Ready    <none>   111s   v1.27.2
+NAME                                             STATUS   ROLES    AGE     VERSION
+scw-scalewayworkshop-scalewayworkshop-n-0c2dcc   Ready    <none>   3m34s   v1.27.2
+scw-scalewayworkshop-scalewayworkshop-n-545a31   Ready    <none>   3m35s   v1.27.2
+scw-scalewayworkshop-scalewayworkshop-n-ce1d84   Ready    <none>   3m37s   v1.27.2
 ```
 
 Congratulations! You have successfully deployed a Kubernetes cluster on Scaleway using Pulumi. Please leave the cluster
