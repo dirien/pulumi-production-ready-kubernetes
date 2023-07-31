@@ -11,8 +11,8 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest",
-    },
+      "version": "latest"
+    }
   },
   "forwardPorts": ["0:50000" ]
 }
