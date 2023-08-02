@@ -5,6 +5,7 @@ import (
 	"github.com/port-labs/pulumi-port/sdk/go/port"
 	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes"
 	"github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/apiextensions"
+	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/core/v1"
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v4/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
@@ -337,12 +338,22 @@ func main() {
 		if err != nil {
 			return err
 		}
+
+		k8sExporterNS, err := corev1.NewNamespace(ctx, "port-k8s-exporter", &corev1.NamespaceArgs{
+			Metadata: &metav1.ObjectMetaArgs{
+				Name: pulumi.String("port-k8s-exporter"),
+			},
+		}, pulumi.Provider(k8sProvider))
+		if err != nil {
+			return err
+		}
+
 		_, err = apiextensions.NewCustomResource(ctx, "port-repo-release", &apiextensions.CustomResourceArgs{
 			ApiVersion: pulumi.String("helm.toolkit.fluxcd.io/v2beta1"),
 			Kind:       pulumi.String("HelmRelease"),
 			Metadata: &metav1.ObjectMetaArgs{
 				Name:      pulumi.String("port-k8s-exporter"),
-				Namespace: pulumi.String("port-k8s-exporter"),
+				Namespace: k8sExporterNS.Metadata.Name(),
 			},
 			OtherFields: kubernetes.UntypedArgs{
 				"spec": pulumi.Map{
@@ -409,7 +420,7 @@ resources:
 					},
 				},
 			},
-		}, pulumi.Provider(k8sProvider), pulumi.Provider(k8sProvider), pulumi.DependsOn([]pulumi.Resource{helmReleaseBlueprint, gitopsPlatform, clusterBlueprint, gitOpsBackendBlueprint, portRepo}))
+		}, pulumi.Provider(k8sProvider), pulumi.Provider(k8sProvider), pulumi.DependsOn([]pulumi.Resource{helmReleaseBlueprint, gitopsPlatform, clusterBlueprint, gitOpsBackendBlueprint, portRepo, k8sExporterNS}))
 		if err != nil {
 			return err
 		}
