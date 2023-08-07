@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 pulumi/pulumi:3.76.1
+FROM --platform=linux/amd64 pulumi/pulumi:3.77.1
 
 RUN <<EOF
 ## Install pulumi and set to PATH
