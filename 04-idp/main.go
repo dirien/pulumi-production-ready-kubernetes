@@ -323,7 +323,7 @@ func main() {
 
 		portRepo, err := apiextensions.NewCustomResource(ctx, "port-repo", &apiextensions.CustomResourceArgs{
 			ApiVersion: pulumi.String("source.toolkit.fluxcd.io/v1beta2"),
-			Kind:       pulumi.String("HelmRepository"),
+			Kind:       pulumi.String("OCIRepository"),
 			Metadata: &metav1.ObjectMetaArgs{
 				Name:      pulumi.String("port-labs"),
 				Namespace: pulumi.String("flux-system"),
@@ -331,7 +331,10 @@ func main() {
 			OtherFields: kubernetes.UntypedArgs{
 				"spec": kubernetes.UntypedArgs{
 					"interval": pulumi.String("1m"),
-					"url":      pulumi.String("https://port-labs.github.io/helm-charts"),
+					"url":      pulumi.String("oci://ghcr.io/port-labs/charts/port-k8s-exporter"),
+					"ref": kubernetes.UntypedArgs{
+						"tag": pulumi.String("0.1.19"),
+					},
 				},
 			},
 		}, pulumi.Provider(k8sProvider))

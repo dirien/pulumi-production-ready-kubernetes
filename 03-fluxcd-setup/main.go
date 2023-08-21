@@ -23,13 +23,10 @@ func main() {
 		})
 
 		release, err := helm.NewRelease(ctx, "flux2", &helm.ReleaseArgs{
-			Chart:           pulumi.String("flux2"),
+			Chart:           pulumi.String("oci://ghcr.io/fluxcd-community/charts/flux2"),
 			Namespace:       pulumi.String("flux-system"),
 			CreateNamespace: pulumi.Bool(true),
-			RepositoryOpts: &helm.RepositoryOptsArgs{
-				Repo: pulumi.String("https://fluxcd-community.github.io/helm-charts"),
-			},
-			Version: pulumi.String("2.9.0"),
+			Version:         pulumi.String("2.9.2"),
 		}, pulumi.Provider(k8sProvider))
 
 		if err != nil {
@@ -86,32 +83,33 @@ func main() {
 		if err != nil {
 			return err
 		}
-
-		_, err = apiextensions.NewCustomResource(ctx, "hello-server-helm-release2", &apiextensions.CustomResourceArgs{
-			ApiVersion: pulumi.String("helm.toolkit.fluxcd.io/v2beta1"),
-			Kind:       pulumi.String("HelmRelease"),
-			Metadata: &metav1.ObjectMetaArgs{
-				Name: pulumi.String("hello-server-helm-release2"),
-			},
-			OtherFields: kubernetes.UntypedArgs{
-				"spec": pulumi.Map{
-					"interval": pulumi.String("1m"),
-					"chart": pulumi.Map{
-						"spec": pulumi.Map{
-							"chart":    pulumi.String("./delivery/charts/hello-server"),
-							"interval": pulumi.String("1m"),
-							"sourceRef": pulumi.Map{
-								"kind": gitRepo.Kind,
-								"name": gitRepo.Metadata.Name(),
+		/*
+			_, err = apiextensions.NewCustomResource(ctx, "hello-server-helm-release2", &apiextensions.CustomResourceArgs{
+				ApiVersion: pulumi.String("helm.toolkit.fluxcd.io/v2beta1"),
+				Kind:       pulumi.String("HelmRelease"),
+				Metadata: &metav1.ObjectMetaArgs{
+					Name: pulumi.String("hello-server-helm-release2"),
+				},
+				OtherFields: kubernetes.UntypedArgs{
+					"spec": pulumi.Map{
+						"interval": pulumi.String("1m"),
+						"chart": pulumi.Map{
+							"spec": pulumi.Map{
+								"chart":    pulumi.String("./delivery/charts/hello-server"),
+								"interval": pulumi.String("1m"),
+								"sourceRef": pulumi.Map{
+									"kind": gitRepo.Kind,
+									"name": gitRepo.Metadata.Name(),
+								},
 							},
 						},
 					},
 				},
-			},
-		}, pulumi.Provider(k8sProvider), pulumi.DependsOn([]pulumi.Resource{release, gitRepo}))
-		if err != nil {
-			return err
-		}
+			}, pulumi.Provider(k8sProvider), pulumi.DependsOn([]pulumi.Resource{release, gitRepo}))
+			if err != nil {
+				return err
+			}
+		*/
 		return nil
 	})
 }
