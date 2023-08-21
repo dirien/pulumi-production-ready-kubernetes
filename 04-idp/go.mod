@@ -3,10 +3,9 @@ module 04-idp
 go 1.20
 
 require (
-	github.com/dirien/pulumi-scaleway/sdk/v2 v2.24.0
-	github.com/port-labs/pulumi-port/sdk v1.1.1
-	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.0.1
-	github.com/pulumi/pulumi/sdk/v3 v3.75.0
+	github.com/port-labs/pulumi-port/sdk v1.4.1
+	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.1.0
+	github.com/pulumi/pulumi/sdk/v3 v3.78.1
 )
 
 require (
@@ -60,13 +59,13 @@ require (
 	github.com/zclconf/go-cty v1.12.1 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/crypto v0.3.1-0.20221117191849-2c476679df9a // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/term v0.7.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/term v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
-	google.golang.org/grpc v1.56.1 // indirect
-	google.golang.org/protobuf v1.30.0 // indirect
+	google.golang.org/genproto v0.0.0-20230526161137-0005af68ea54 // indirect
+	google.golang.org/grpc v1.57.0 // indirect
+	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
