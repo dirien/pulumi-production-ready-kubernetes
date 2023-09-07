@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/port-labs/pulumi-port/sdk v1.4.1
-	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.1.0
+	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.1.1
 	github.com/pulumi/pulumi/sdk/v3 v3.78.1
 )
 
@@ -63,7 +63,7 @@ require (
 	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/term v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
-	google.golang.org/genproto v0.0.0-20230526161137-0005af68ea54 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230706204954-ccb25ca9f130 // indirect
 	google.golang.org/grpc v1.57.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
