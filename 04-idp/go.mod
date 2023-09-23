@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/port-labs/pulumi-port/sdk v1.6.0
 	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.2.0
-	github.com/pulumi/pulumi/sdk/v3 v3.83.0
+	github.com/pulumi/pulumi/sdk/v3 v3.85.0
 )
 
 require (
