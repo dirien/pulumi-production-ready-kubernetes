@@ -5,7 +5,7 @@
     "@types/node": "^20"
   },
   "dependencies": {
-    "@pulumi/pulumi": "3.86.0",
+    "@pulumi/pulumi": "3.88.1",
     "@ediri/scaleway": "2.28.0"
   }
 }
