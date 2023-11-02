@@ -3,7 +3,7 @@ module 04-idp
 go 1.20
 
 require (
-	github.com/port-labs/pulumi-port/sdk v1.6.5
+	github.com/port-labs/pulumi-port/sdk v1.6.6
 	github.com/pulumi/pulumi-kubernetes/sdk/v4 v4.5.3
 	github.com/pulumi/pulumi/sdk/v3 v3.91.1
 )
