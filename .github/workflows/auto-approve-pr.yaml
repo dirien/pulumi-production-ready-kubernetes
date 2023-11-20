@@ -1,3 +1,4 @@
+name: Auto-approve PRs
 on:
   workflow_dispatch:
   schedule:
@@ -13,4 +14,4 @@ jobs:
       with:
         repository: ${{ github.repository }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        labels: ""
+        labels: "dependencies"
