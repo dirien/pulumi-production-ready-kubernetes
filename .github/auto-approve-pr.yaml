@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 0 * * *'
+
+jobs:
+  approve-prs:
+    runs-on: ubuntu-latest
+    name: Approve valid PRs
+    steps:
+    - name: Approve valid workflows
+      uses: Cian911/gomerge-action@13a0303cea950b8b72f89d55c1215d74a061caa9 # v1.0.0
+      with:
+        repository: ${{ github.repository }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        labels: ""
