@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@pulumi/docker": "4.5.3",
-    "@pulumi/pulumi": "3.115.2",
+    "@pulumi/pulumi": "3.116.1",
     "@ediri/scaleway": "2.35.0"
   }
 }
