@@ -5,7 +5,7 @@
     "@types/node": "^20"
   },
   "dependencies": {
-    "@pulumi/docker": "4.5.3",
+    "@pulumi/docker": "4.5.4",
     "@pulumi/pulumi": "3.120.0",
     "@ediri/scaleway": "2.40.0"
   }
