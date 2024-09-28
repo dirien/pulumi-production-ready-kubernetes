@@ -2,7 +2,7 @@
   "name": "scalewayworkshop",
   "main": "index.ts",
   "devDependencies": {
-    "@types/node": "^20"
+    "@types/node": "^22"
   },
   "dependencies": {
     "@pulumi/pulumi": "3.125.0",
