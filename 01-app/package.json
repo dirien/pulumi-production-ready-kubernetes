@@ -2,7 +2,7 @@
   "name": "scalewayworkshop-app",
   "main": "index.ts",
   "devDependencies": {
-    "@types/node": "^20"
+    "@types/node": "^22"
   },
   "dependencies": {
     "@pulumi/docker": "4.5.4",
